@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.7;
+
+ contract change_password{
+   string public username = "vishalMittal2";
+   string public password = "Vishal";
+   address useraddress;
+ 
+
+ constructor (){
+   useraddress = msg.sender;
+ }
+ modifier restrictiveProcess{
+   require(useraddress == msg.sender,"only owner can change password ");_;
+ }
+
+ function set(string memory _username , string memory _password) public restrictiveProcess{
+   username = _username;
+   password = _password;
+ }
+ function get()public view restrictiveProcess returns(string memory,string memory){
+   return (username,password);
+  
+ }
+ }
